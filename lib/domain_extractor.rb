@@ -32,6 +32,7 @@ module DomainExtractor
 
     def extract(url)
       fail_if_empty(url)
+      fail_if_has_incorrect_characters(url)
 
       host = fetch_host(url)
 
@@ -52,6 +53,10 @@ module DomainExtractor
     private
       def fail_if_empty(string)
         raise CantExtractDomain.new if string.nil? || string.empty?
+      end
+
+      def fail_if_has_incorrect_characters(url)
+        raise CantExtractDomain.new if url.include?("@")
       end
 
       def fetch_host(url)

@@ -38,5 +38,10 @@ module DomainExtractor
     def test_throw_error_when_domain_has_incorrect_tld
       assert_raises(CantExtractDomain) {@extractor.extract("http://google.kaka/")}
     end
+
+    def test_throw_error_when_url_has_at_sign
+      assert_raises(CantExtractDomain) {@extractor.extract("http://dada@google.com/")}
+      assert_raises(CantExtractDomain) {@extractor.extract("dada@google.com")}
+    end
   end
 end
