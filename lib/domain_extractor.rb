@@ -44,7 +44,7 @@ module DomainExtractor
       fail_if_incorrect_tld(domain)
 
       domain
-    rescue URI::InvalidURIError
+    rescue Addressable::URI::InvalidURIError
       raise CantExtractDomain.new
     end
 
