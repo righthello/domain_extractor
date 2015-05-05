@@ -20,7 +20,8 @@ module DomainExtractor
     include Singleton
 
     def initialize
-      source_file = File.join("data", "effective_tld_names.dat")
+      gem_path = File.expand_path(File.join(File.dirname(File.expand_path(__FILE__)), ".."))
+      source_file = File.join(gem_path, "data", "effective_tld_names.dat")
       @known_domain_suffixes = []
       File.open(source_file, "r") do |file|
         @known_domain_suffixes = file.each_line.map do |line|
