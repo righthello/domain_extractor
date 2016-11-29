@@ -1,5 +1,6 @@
 require "bundler/gem_tasks"
 require 'rake/testtask'
+require "tld_updater/runner"
 
 Rake::TestTask.new do |t|
   t.libs << "test"
@@ -8,3 +9,10 @@ Rake::TestTask.new do |t|
 end
 
 task default: :test
+
+
+namespace :tld do
+  task :update do
+    DomainExtractor::TLDUpdater::Runner.new.call
+  end
+end
