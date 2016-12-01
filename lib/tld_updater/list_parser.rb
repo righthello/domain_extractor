@@ -6,6 +6,7 @@ module DomainExtractor
         :remove_comments,
         :remove_empty_lines,
         :clean_stars,
+        :clean_exclamations,
         :rejoin
       ]
       def call(list)
@@ -28,6 +29,10 @@ module DomainExtractor
 
       def clean_stars(list)
         list.map {|line| line.gsub(/^\*\./,'')}
+      end
+
+      def clean_exclamations(list)
+        list.map {|line| line.gsub(/^\!/,'')}
       end
 
       def rejoin(list)
